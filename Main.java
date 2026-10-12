@@ -263,32 +263,51 @@ public class BuildingRentSystem {
         Scanner sc = new Scanner(System.in);
         int choice;
 
-        System.out.println("===== " + owners[0].getBuildingName() + " : Rent Management System =====");
+        System.out.println("==================================================");
+        System.out.println("   " + owners[0].getBuildingName() + " : Rent Management System");
+        System.out.println("==================================================");
 
         do {
-            System.out.println("\n1. View Owner");
-            System.out.println("2. View Tenants");
-            System.out.println("3. View Offices");
-            System.out.println("4. View Workers");
-            System.out.println("5. Collect Tenant Rent");
-            System.out.println("6. Collect Office Rent");
-            System.out.println("7. Show Pending Dues");
-            System.out.println("8. Monthly Summary");
+            System.out.println("\n----------- MAIN MENU -----------");
+            System.out.println("1. View Records (Owner/Tenants/Offices/Workers)");
+            System.out.println("2. Collect Tenant Rent");
+            System.out.println("3. Collect Office Rent");
+            System.out.println("4. Show Pending Dues");
+            System.out.println("5. Monthly Summary");
             System.out.println("0. Exit");
             System.out.print("Enter choice: ");
             choice = sc.nextInt();
 
             switch (choice) {
-                case 1: showOwners();          break;
-                case 2: showTenants();         break;
-                case 3: showOffices();         break;
-                case 4: showWorkers();         break;
-                case 5: collectTenantRent(sc); break;
-                case 6: collectOfficeRent(sc); break;
-                case 7: showPendingDues();     break;
-                case 8: showMonthlySummary();  break;
+                case 1:
+                    int viewChoice;
+                    do {
+                        System.out.println("\n--- VIEW RECORDS MENU ---");
+                        System.out.println("1. View Owner Details");
+                        System.out.println("2. View All Tenants");
+                        System.out.println("3. View All Offices");
+                        System.out.println("4. View All Workers");
+                        System.out.println("0. Back to Main Menu");
+                        System.out.print("Enter choice: ");
+                        viewChoice = sc.nextInt();
+
+                        switch (viewChoice) {
+                            case 1: showOwners();  break;
+                            case 2: showTenants(); break;
+                            case 3: showOffices(); break;
+                            case 4: showWorkers(); break;
+                            case 0: System.out.println("Returning to Main Menu..."); break;
+                            default: System.out.println("Invalid choice. Please try again.");
+                        }
+                    } while (viewChoice != 0);
+                    break;
+                    
+                case 2: collectTenantRent(sc); break;
+                case 3: collectOfficeRent(sc); break;
+                case 4: showPendingDues();     break;
+                case 5: showMonthlySummary();  break;
                 case 0: System.out.println("Goodbye!"); break;
-                default: System.out.println("Invalid choice.");
+                default: System.out.println("Invalid choice. Please try again.");
             }
         } while (choice != 0);
 
